@@ -10,7 +10,7 @@ const client = createThirdwebClient({
 
 export default function ClaudeCheckout() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [selectedAmount, setSelectedAmount] = useState("50")
+  const [selectedAmount, setSelectedAmount] = useState("5")
 
   return (
     <div className="checkout-page">
@@ -19,6 +19,18 @@ export default function ClaudeCheckout() {
         <p className="subtitle">Choose your donation amount and payment method</p>
         
         <div className="tier-selection">
+          <button 
+            className={`tier-button ${selectedAmount === "1" ? "active" : ""}`}
+            onClick={() => setSelectedAmount("1")}
+          >
+            Supporter – $1
+          </button>
+          <button 
+            className={`tier-button ${selectedAmount === "5" ? "active" : ""}`}
+            onClick={() => setSelectedAmount("5")}
+          >
+            Friend – $5
+          </button>
           <button 
             className={`tier-button ${selectedAmount === "25" ? "active" : ""}`}
             onClick={() => setSelectedAmount("25")}
