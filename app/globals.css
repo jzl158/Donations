@@ -6,44 +6,192 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
-  color: #f5f5f5;
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+  color: #ffffff;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.checkout-page {
-  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+.campaign-page {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.container {
+.campaign-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.campaign-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
   width: 100%;
-  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.candidate-image {
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+  height: auto;
+}
+
+.content-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  align-items: center;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #00ffa3;
-  text-align: center;
-  text-shadow: 0 0 20px #00ffa380;
+.campaign-header {
+  text-align: left;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #cccccc;
-  text-align: center;
-  margin-bottom: 1rem;
+.candidate-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
 }
+
+.position {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0.5rem 0 0 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.campaign-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f5f5f5;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.donate-button {
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  align-self: flex-start;
+}
+
+.donate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  background: linear-gradient(45deg, #ff8a65, #ffb74d);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal-subtitle {
+  font-size: 1.1rem;
+  color: #e8eaf6;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 
 .tier-selection {
   display: flex;
@@ -54,30 +202,31 @@ body {
 }
 
 .tier-button {
-  padding: 1rem 2rem;
-  border: 2px solid #333;
-  background: rgba(0, 255, 163, 0.1);
-  color: #f5f5f5;
-  border-radius: 12px;
-  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 140px;
+  min-width: 120px;
+  backdrop-filter: blur(10px);
 }
 
 .tier-button:hover {
-  border-color: #00ffa3;
-  background: rgba(0, 255, 163, 0.2);
-  box-shadow: 0 0 15px #00ffa340;
+  border-color: #ff6b35;
+  background: rgba(255, 107, 53, 0.2);
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
   transform: translateY(-2px);
 }
 
 .tier-button.active {
-  border-color: #00ffa3;
-  background: rgba(0, 255, 163, 0.25);
-  box-shadow: 0 0 20px #00ffa360;
-  color: #00ffa3;
+  border-color: #ff6b35;
+  background: rgba(255, 107, 53, 0.3);
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+  color: #ffffff;
 }
 
 .feedback {
@@ -90,28 +239,29 @@ body {
 }
 
 .feedback.success {
-  background-color: #00ffa380;
-  color: #0f0;
-  border: 1px solid #00ffa3;
-  box-shadow: 0 0 15px #00ffa340;
+  background-color: rgba(76, 175, 80, 0.3);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
 }
 
 .feedback.error {
-  background-color: #ff004080;
-  color: #f33;
-  border: 1px solid #ff0040;
-  box-shadow: 0 0 15px #ff004040;
+  background-color: rgba(244, 67, 54, 0.3);
+  color: #f44336;
+  border: 1px solid #f44336;
+  box-shadow: 0 0 15px rgba(244, 67, 54, 0.3);
 }
 
 .widget-container {
   width: 100%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 255, 163, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  margin-top: 1rem;
 }
 
 .thank-you-content {
@@ -158,33 +308,114 @@ body {
 }
 
 @media (max-width: 768px) {
-  .checkout-page {
+  .campaign-page {
     padding: 1rem;
   }
   
-  .title {
-    font-size: 2rem;
+  .campaign-container {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .candidate-name {
+    font-size: 2.5rem;
+  }
+  
+  .position {
+    font-size: 1.2rem;
+  }
+  
+  .campaign-description {
+    font-size: 1rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
   }
   
   .tier-selection {
     flex-direction: column;
     align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 1rem;
   }
   
   .tier-button {
     width: 100%;
-    max-width: 200px;
+    max-width: 280px;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    min-width: auto;
   }
   
   .widget-container {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .feedback {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    margin: 0.75rem 0;
   }
   
   .success-icon {
     font-size: 3rem;
+    margin: 1.5rem 0;
   }
   
   .message {
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .campaign-page {
+    padding: 0.5rem;
+  }
+  
+  .candidate-name {
+    font-size: 2rem;
+  }
+  
+  .position {
+    font-size: 1rem;
+  }
+  
+  .campaign-description {
+    font-size: 0.9rem;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.3rem;
+  }
+  
+  .tier-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    max-width: 260px;
+  }
+  
+  .widget-container {
+    padding: 1rem;
+  }
+  
+  .feedback {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.95rem;
   }
 }
