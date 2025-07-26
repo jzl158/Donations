@@ -11,7 +11,7 @@ const client = createThirdwebClient({
 
 export default function ClaudeCheckout() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [selectedAmount, setSelectedAmount] = useState("5")
+  const [selectedAmount, setSelectedAmount] = useState("100")
   const [showModal, setShowModal] = useState(false)
 
   return (
@@ -63,31 +63,49 @@ export default function ClaudeCheckout() {
                 className={`tier-button ${selectedAmount === "1" ? "active" : ""}`}
                 onClick={() => setSelectedAmount("1")}
               >
-                Supporter – $1
+                $1
               </button>
               <button 
                 className={`tier-button ${selectedAmount === "5" ? "active" : ""}`}
                 onClick={() => setSelectedAmount("5")}
               >
-                Friend – $5
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "25" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("25")}
-              >
-                Bronze – $25
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "50" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("50")}
-              >
-                Gold – $50
+                $5
               </button>
               <button 
                 className={`tier-button ${selectedAmount === "100" ? "active" : ""}`}
                 onClick={() => setSelectedAmount("100")}
               >
-                Platinum – $100
+                $100
+              </button>
+              <button 
+                className={`tier-button ${selectedAmount === "250" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("250")}
+              >
+                $250
+              </button>
+              <button 
+                className={`tier-button ${selectedAmount === "500" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("500")}
+              >
+                $500
+              </button>
+              <button 
+                className={`tier-button ${selectedAmount === "1000" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("1000")}
+              >
+                $1000
+              </button>
+              <button 
+                className={`tier-button ${selectedAmount === "2500" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("2500")}
+              >
+                $2500
+              </button>
+              <button 
+                className={`tier-button ${selectedAmount === "5000" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("5000")}
+              >
+                $5000
               </button>
             </div>
 
