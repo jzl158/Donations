@@ -318,6 +318,14 @@ body {
     text-align: center;
   }
   
+  .content-section {
+    align-items: center;
+  }
+  
+  .donate-button {
+    align-self: center;
+  }
+  
   .candidate-name {
     font-size: 2.5rem;
   }
@@ -331,8 +339,10 @@ body {
   }
   
   .modal-content {
-    padding: 1.5rem;
-    margin: 1rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: none;
   }
   
   .modal-title {
@@ -356,10 +366,15 @@ body {
   }
   
   .widget-container {
-    padding: 1.25rem;
+    padding: 0.75rem;
     margin: 0;
     width: 100%;
     max-width: none;
+    font-size: 14px;
+  }
+  
+  .widget-container * {
+    font-size: 14px !important;
   }
   
   .feedback {
@@ -380,7 +395,11 @@ body {
 
 @media (max-width: 480px) {
   .campaign-page {
-    padding: 0.5rem;
+    padding: 0.25rem;
+  }
+  
+  .modal-overlay {
+    padding: 0.25rem;
   }
   
   .candidate-name {
@@ -396,8 +415,11 @@ body {
   }
   
   .modal-content {
-    padding: 1rem;
-    margin: 0.5rem;
+    padding: 0.75rem;
+    margin: 0.25rem;
+    width: calc(100% - 0.5rem);
+    max-height: 95vh;
+    border-radius: 12px;
   }
   
   .modal-title {
@@ -411,7 +433,23 @@ body {
   }
   
   .widget-container {
-    padding: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  
+  .widget-container * {
+    font-size: 12px !important;
+  }
+  
+  .widget-container button {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+  
+  .widget-container input {
+    font-size: 12px !important;
+    padding: 8px !important;
   }
   
   .feedback {
