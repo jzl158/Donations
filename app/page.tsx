@@ -2,45 +2,60 @@
 
 import { createThirdwebClient, defineChain } from "thirdweb"
 import { CheckoutWidget } from "thirdweb/react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 
 const client = createThirdwebClient({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID || "YOUR_TW_CLIENT_ID",
 })
 
-export default function ClaudeCheckout() {
+export default function CoffeeCheckout() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [selectedAmount, setSelectedAmount] = useState("100")
+  const [selectedAmount, setSelectedAmount] = useState("8")
   const [showModal, setShowModal] = useState(false)
+  const [ethPrice, setEthPrice] = useState<number>(0)
+  const [ethAmount, setEthAmount] = useState<string>("0")
+
+  useEffect(() => {
+    // Fetch current ETH price
+    const fetchEthPrice = async () => {
+      try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
+        const data = await response.json()
+        setEthPrice(data.ethereum.usd)
+      } catch (error) {
+        console.error('Failed to fetch ETH price:', error)
+        setEthPrice(3500) // Fallback price
+      }
+    }
+    fetchEthPrice()
+  }, [])
+
+  useEffect(() => {
+    // Calculate ETH amount when selectedAmount or ethPrice changes
+    if (ethPrice > 0) {
+      const usdAmount = parseFloat(selectedAmount)
+      const calculatedEthAmount = usdAmount / ethPrice
+      setEthAmount(calculatedEthAmount.toString())
+    }
+  }, [selectedAmount, ethPrice])
 
   return (
     <>
       <div className="campaign-page">
         <div className="campaign-container">
-          <div className="image-section">
-            <Image
-              src="/DJPic.png"
-              alt="Derrick Jackson"
-              width={400}
-              height={500}
-              className="candidate-image"
-            />
-          </div>
           <div className="content-section">
             <div className="campaign-header">
-              <div className="stars">★ ★ ★</div>
-              <h1 className="candidate-name">DERRICK JACKSON</h1>
-              <h2 className="position">FOR GOVERNOR</h2>
+              <h1 className="candidate-name">COFFEE</h1>
             </div>
             <p className="campaign-description">
-              Join us in building a stronger future for our state. Derrick Jackson brings decades of public service experience and a vision for progress that puts working families first. Together, we can create opportunities for all, strengthen our communities, and ensure a brighter tomorrow for the next generation.
+              Support great coffee! Your donation helps us bring you the finest beans from around the world, expertly roasted to perfection. Every contribution goes towards sourcing premium coffee and supporting our local community of coffee lovers.
             </p>
             <button 
               className="donate-button"
               onClick={() => setShowModal(true)}
             >
-              DONATE
+              BUY COFFEE
             </button>
           </div>
         </div>
@@ -55,57 +70,21 @@ export default function ClaudeCheckout() {
             >
               ×
             </button>
-            <h2 className="modal-title">Support Our Campaign</h2>
-            <p className="modal-subtitle">Choose your donation amount and payment method</p>
+            <h2 className="modal-title">Buy Coffee</h2>
+            <p className="modal-subtitle">Choose your amount and payment method</p>
             
             <div className="tier-selection">
               <button 
-                className={`tier-button ${selectedAmount === "1" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("1")}
+                className={`tier-button ${selectedAmount === "3" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("3")}
               >
-                $1
+                $3
               </button>
               <button 
-                className={`tier-button ${selectedAmount === "5" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("5")}
+                className={`tier-button ${selectedAmount === "8" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("8")}
               >
-                $5
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "100" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("100")}
-              >
-                $100
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "250" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("250")}
-              >
-                $250
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "500" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("500")}
-              >
-                $500
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "1000" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("1000")}
-              >
-                $1000
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "2500" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("2500")}
-              >
-                $2500
-              </button>
-              <button 
-                className={`tier-button ${selectedAmount === "5000" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("5000")}
-              >
-                $5000
+                $8
               </button>
             </div>
 
@@ -120,11 +99,10 @@ export default function ClaudeCheckout() {
               <CheckoutWidget
                 client={client}
                 chain={defineChain(8453)}
-                amount={selectedAmount}
-                tokenAddress="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-                seller="0x50d18D9F09f61B85B88BCE55d6fd50E245090746"
+                amount={ethAmount}
+                tokenAddress="0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                seller="0xc02CfA39526bC088Ff0513D8169C2824fC7112D5"
                 paymentMethods={["crypto", "card"]}
-                currency="USD"
                 onSuccess={() => {
                   setStatus("success")
                   setTimeout(() => {

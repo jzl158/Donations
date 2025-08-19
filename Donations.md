@@ -11,8 +11,8 @@ function Example() {
       client\={client}  
       chain\={defineChain(8453)}  
       amount\="50"  
-      token\="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"  
-      seller\="0x50d18D9F09f61B85B88BCE55d6fd50E245090746"  
+      token\="0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"  
+      seller\="0xc02CfA39526bC088Ff0513D8169C2824fC7112D5"  
       paymentMethods\={\["crypto", "card"\]}  
       currency\="USD"  
     /\>  
