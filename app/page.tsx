@@ -9,9 +9,9 @@ const client = createThirdwebClient({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID || "YOUR_TW_CLIENT_ID",
 })
 
-export default function CoffeeCheckout() {
+export default function ChristmasDonations() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [selectedAmount, setSelectedAmount] = useState("8")
+  const [selectedAmount, setSelectedAmount] = useState("50")
   const [showModal, setShowModal] = useState(false)
   const [ethPrice, setEthPrice] = useState<number>(0)
   const [ethAmount, setEthAmount] = useState<string>("0")
@@ -46,16 +46,16 @@ export default function CoffeeCheckout() {
         <div className="campaign-container">
           <div className="content-section">
             <div className="campaign-header">
-              <h1 className="candidate-name">COFFEE</h1>
+              <h1 className="candidate-name">HOLIDAY GIVING</h1>
             </div>
             <p className="campaign-description">
-              Support great coffee! Your donation helps us bring you the finest beans from around the world, expertly roasted to perfection. Every contribution goes towards sourcing premium coffee and supporting our local community of coffee lovers.
+              Spread joy this holiday season with crypto! Your donation helps bring warmth and happiness to those in need during this special time of year. Every contribution makes a difference in creating magical moments and supporting our community.
             </p>
-            <button 
+            <button
               className="donate-button"
               onClick={() => setShowModal(true)}
             >
-              BUY COFFEE
+              DONATE NOW
             </button>
           </div>
         </div>
@@ -70,21 +70,27 @@ export default function CoffeeCheckout() {
             >
               ×
             </button>
-            <h2 className="modal-title">Buy Coffee</h2>
+            <h2 className="modal-title">Holiday Donation</h2>
             <p className="modal-subtitle">Choose your amount and payment method</p>
-            
+
             <div className="tier-selection">
-              <button 
-                className={`tier-button ${selectedAmount === "3" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("3")}
+              <button
+                className={`tier-button ${selectedAmount === "25" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("25")}
               >
-                $3
+                $25
               </button>
-              <button 
-                className={`tier-button ${selectedAmount === "8" ? "active" : ""}`}
-                onClick={() => setSelectedAmount("8")}
+              <button
+                className={`tier-button ${selectedAmount === "50" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("50")}
               >
-                $8
+                $50
+              </button>
+              <button
+                className={`tier-button ${selectedAmount === "100" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("100")}
+              >
+                $100
               </button>
             </div>
 

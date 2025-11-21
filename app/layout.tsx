@@ -11,8 +11,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Web3 Donations</title>
-        <meta name="description" content="Donate using cryptocurrency or card payments" />
+        <title>Holiday Crypto Donations</title>
+        <meta name="description" content="Spread joy this Christmas season with crypto donations. Support our cause using cryptocurrency or card payments." />
       </head>
       <body>
         <ThirdwebProvider>
