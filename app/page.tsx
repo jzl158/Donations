@@ -11,7 +11,7 @@ const client = createThirdwebClient({
 
 export default function ChristmasDonations() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [selectedAmount, setSelectedAmount] = useState("50")
+  const [selectedAmount, setSelectedAmount] = useState("25")
   const [showModal, setShowModal] = useState(false)
   const [ethPrice, setEthPrice] = useState<number>(0)
   const [ethAmount, setEthAmount] = useState<string>("0")
@@ -74,6 +74,18 @@ export default function ChristmasDonations() {
             <p className="modal-subtitle">Choose your amount and payment method</p>
 
             <div className="tier-selection">
+              <button
+                className={`tier-button ${selectedAmount === "5" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("5")}
+              >
+                $5
+              </button>
+              <button
+                className={`tier-button ${selectedAmount === "10" ? "active" : ""}`}
+                onClick={() => setSelectedAmount("10")}
+              >
+                $10
+              </button>
               <button
                 className={`tier-button ${selectedAmount === "25" ? "active" : ""}`}
                 onClick={() => setSelectedAmount("25")}
